@@ -46,11 +46,11 @@ public class DIYArrayList<E> implements List<E> {
     }
 
     public boolean add(E e) {
-        int newSize = size + 1;
+        int newSize = size++;
         Object[] newInnerArray = Arrays.copyOf(innerArray, newSize);
         newInnerArray[size] = e;
         innerArray = newInnerArray;
-        size = size++;
+        size = newSize;
         return true;
     }
 

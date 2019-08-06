@@ -13,12 +13,24 @@ public class DIYArrayListTest {
 
     @Test
     @DisplayName("Collections add all")
-    void collectionAddAllInteger() throws Exception {
+    void collectionsAddAllInteger() throws Exception {
         boolean resultAdd = false;
         List<Integer> diyArrayList= new DIYArrayList<>();
         Integer[] arrayInt = {5, 10, 15, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 100};
         resultAdd = Collections.addAll(diyArrayList, arrayInt);
         assertTrue(resultAdd);
+    }
+
+    @Test
+    @DisplayName("Collections copy")
+    void collectionsCopyInteger() throws Exception {
+
+    }
+
+    @Test
+    @DisplayName("Collections sort")
+    void collectionsSortInteger() throws Exception {
+
     }
 
 }

@@ -18,7 +18,7 @@ public class DIYArrayListTest {
         List<Integer> diyArrayList= new DIYArrayList<>();
         resultAdd = Collections.addAll(diyArrayList, initData);
         assertTrue(resultAdd);
-        assertTrue(diyArrayList.size() == initData.length);
+        assertEquals(diyArrayList.size(), initData.length);
     }
 
     @Test

@@ -6,10 +6,11 @@ public class DIYArrayList<E> implements List<E> {
 
     private Object[] innerArray;
     private int size;
+    private static final int DEFAULT_CAPACITY = 10;
 
     public DIYArrayList() {
         size = 0;
-        innerArray = new Object[0];
+        innerArray = new Object[DEFAULT_CAPACITY];
     }
 
     public DIYArrayList(int size) {
@@ -45,9 +46,9 @@ public class DIYArrayList<E> implements List<E> {
 
     public boolean add(E e) {
         int newSize = size + 1;
-        Object[] newInnerArray = Arrays.copyOf(innerArray, newSize);
-        newInnerArray[size] = e;
-        innerArray = newInnerArray;
+        if (newSize > innerArray.length)
+                grow(innerArray.length * 2);
+        innerArray[size] = e;
         size = newSize;
         return true;
     }
@@ -130,6 +131,11 @@ public class DIYArrayList<E> implements List<E> {
     @Override
     public void sort(Comparator<? super E> c) {
         Arrays.sort((E[]) innerArray, 0, size, c);
+    }
+
+    private void grow(int newCapacity){
+        Object[] newInnerArray = Arrays.copyOf(innerArray, newCapacity);
+        innerArray = newInnerArray;
     }
     private class DIYArrayListIterator implements ListIterator<E>{
 

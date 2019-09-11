@@ -1,9 +1,6 @@
 package ru.otus.hw06ATMmodel;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 class MoneyStorage{
 
@@ -24,12 +21,16 @@ class MoneyStorage{
     }
 
     public void addBanknote(Nominals nominal, int count){
-        Integer currentCount = storage.get(nominal);
+        Integer currentCount = Objects.isNull(storage.get(nominal)) ? 0 : storage.get(nominal);
+        if ((currentCount + count) < 0) {
+            throw new  RuntimeException("ошибка добавления банкноты в ячейку");
+        }
         if (Objects.isNull(currentCount)){
             currentCount = count;
         }else {
             currentCount = currentCount + count;
         }
+
         storage.put(nominal, currentCount);
         updateSum();
     }
@@ -49,6 +50,35 @@ class MoneyStorage{
         }
         System.out.println("balance: " + sum);
     }
+
+    public Integer minimumAvailableNominal(){
+
+        if (sum == 0) {
+            return 0;
+        }
+
+        Set<Nominals> keys = storage.keySet();
+        Integer minNominal = Integer.MIN_VALUE;
+
+        for (Nominals nominal : keys){
+            if (storage.get(nominal) > 0 && nominal.getValue() < minNominal ){
+                minNominal = nominal.getValue();
+            }
+        }
+        return minNominal;
+    }
+
+    public ArrayList<Integer> getAvailableNominals(){
+        ArrayList<Integer> availableNominals = new ArrayList<>();
+        Set<Nominals> keys = storage.keySet();
+        for (Nominals nominal : keys){
+            if (storage.get(nominal) > 0){
+                availableNominals.add(nominal.getValue());
+            }
+        }
+        return availableNominals;
+    }
+
 
     private void updateSum(){
         sum = 0;

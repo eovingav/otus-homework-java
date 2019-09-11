@@ -17,7 +17,9 @@ public class ATM {
         usedNominals = nominals;
         storageCells = new MoneyStorage(nominals);
         for (Nominals nominal : nominals) {
-            storageCells.addBanknote(nominal, initBundle.get(nominal));
+            if (initBundle.containsKey(nominal)) {
+                storageCells.addBanknote(nominal, initBundle.get(nominal));
+            }
         }
         balance = storageCells.getSum();
     }
@@ -40,14 +42,27 @@ public class ATM {
 
         MoneyStorage withdrawResult = checkPossibleWithrdaw(sum);
 
+        /*
+        * Добавить ошибку если сумма меньше минимального доступного номинала
+        * Добавить ошибку если сумма больше суммы в банкомате
+        * Переделать последнее исключение на невозможно выдать сумму имеющимися купюрами, доступные номиналы
+         */
+        Integer minNominal = storageCells.minimumAvailableNominal();
+        if ( minNominal > sum){
+            throw new RuntimeException("минимальная доступная сумма выдачи " + minNominal);
+        }
+
+        if (sum > balance){
+            throw new RuntimeException("запрошенная сумма больше доступной, выберите сумму меньше");
+        }
+
+        String stringAvailableNominals = storageCells.getAvailableNominals().toString();
         if (withdrawResult.getSum() != sum){
-            throw new RuntimeException("невозможно выдать сумму");
+            throw new RuntimeException("невозможно выдать сумму доступными номиналами (" + stringAvailableNominals + ")");
         }
         Map<Nominals, Integer> banknotes = withdrawResult.getMoneyStorage();
-        Map<Nominals, Integer> originStorage = storageCells.getMoneyStorage();
         Set<Nominals> keySet = banknotes.keySet();
         for (Nominals nominal : keySet) {
-            int currentCount = originStorage.get(nominal);
             int withdrawCount = banknotes.get(nominal);
             storageCells.addBanknote(nominal, -withdrawCount);
         }

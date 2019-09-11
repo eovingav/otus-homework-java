@@ -42,11 +42,6 @@ public class ATM {
 
         MoneyStorage withdrawResult = checkPossibleWithrdaw(sum);
 
-        /*
-        * Добавить ошибку если сумма меньше минимального доступного номинала
-        * Добавить ошибку если сумма больше суммы в банкомате
-        * Переделать последнее исключение на невозможно выдать сумму имеющимися купюрами, доступные номиналы
-         */
         Integer minNominal = storageCells.minimumAvailableNominal();
         if ( minNominal > sum){
             throw new RuntimeException("минимальная доступная сумма выдачи " + minNominal);

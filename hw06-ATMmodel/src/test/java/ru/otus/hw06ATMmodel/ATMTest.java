@@ -4,31 +4,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ATMTest {
-
-    private Map<Nominals, Integer> initBundle(Nominals[] nominals, int count){
-        Map<Nominals, Integer> initBundle = new HashMap<Nominals, Integer>();
-        for (Nominals nominal : nominals) {
-            initBundle.put(nominal, count);
-        }
-        return initBundle;
-    }
-
-    private int getBalanceBundle(Map<Nominals, Integer> initBundle){
-        int sum = 0;
-        Set<Nominals> keys = initBundle.keySet();
-        for (Nominals nominal : keys) {
-            sum = sum + nominal.getValue() * initBundle.get(nominal);
-        }
-        return sum;
-    }
+class ATMTest {
 
     @Test
     @DisplayName("Test put money (init ATM)")
@@ -37,7 +19,7 @@ public class ATMTest {
         int initBalance = getBalanceBundle(initBundle);
 
         ATM atm = new ATM(NominalsRUB.values(), initBundle);
-        Map<Nominals, Integer> currentStorage = atm.getStorage();
+        Map<Nominals, Integer> currentStorage = atm.getStorage().getMoneyStorage();
         Set<Nominals> keys = currentStorage.keySet();
         for (Nominals nominal : keys) {
             Integer initValue = initBundle.get(nominal);
@@ -45,7 +27,8 @@ public class ATMTest {
             assertEquals(initValue, currentValue);
         }
         assertEquals(initBalance, atm.getBalance());
-        atm.printStorage(atm.getStorage());
+        MoneyStorage currentATMStorage = atm.getStorage();
+        currentATMStorage.printStorage();
     }
 
     @Test
@@ -58,8 +41,8 @@ public class ATMTest {
         atm.addToStorage(initBundle);
 
         assertEquals(initBalance * 2, atm.getBalance());
-        Map<Nominals, Integer> currentStorage = atm.getStorage();
-        atm.printStorage(atm.getStorage());
+        MoneyStorage storage = atm.getStorage();
+        storage.printStorage();
     }
 
     @Test
@@ -70,9 +53,9 @@ public class ATMTest {
         Integer withdraw = 120;
         System.out.println("start balance: " + atm.getBalance());
         System.out.println("withdraw: " + withdraw);
-        Map<Nominals, Integer> banknotes = atm.withdrawFunds(withdraw);
-        atm.printStorage(banknotes);
-        assertEquals(atm.getSumStorage(banknotes), withdraw );
+        MoneyStorage banknotes = atm.withdrawFunds(withdraw);
+        banknotes.printStorage();
+        assertEquals((int) banknotes.getSum(),(int) withdraw );
     }
 
     @Test
@@ -83,9 +66,9 @@ public class ATMTest {
         Integer withdraw = 21;
         System.out.println("start balance: " + atm.getBalance());
         System.out.println("withdraw: " + withdraw);
-        Map<Nominals, Integer> banknotes = atm.withdrawFunds(withdraw);
-        atm.printStorage(banknotes);
-        assertEquals(atm.getSumStorage(banknotes), withdraw);
+        MoneyStorage banknotes = atm.withdrawFunds(withdraw);
+        banknotes.printStorage();
+        assertEquals((int) banknotes.getSum(), (int) withdraw);
     }
 
     @Test
@@ -119,8 +102,25 @@ public class ATMTest {
         Integer withdraw = 19;
         System.out.println("start balance: " + atm.getBalance());
         System.out.println("withdraw: " + withdraw);
-        Map<Nominals, Integer> banknotes = atm.withdrawFunds(withdraw);
-        atm.printStorage(banknotes);
-        assertEquals(atm.getSumStorage(banknotes), withdraw);
+        MoneyStorage banknotes = atm.withdrawFunds(withdraw);
+        banknotes.printStorage();
+        assertEquals((int) banknotes.getSum(), (int) withdraw);
+    }
+
+    private Map<Nominals, Integer> initBundle(Nominals[] nominals, int count){
+        Map<Nominals, Integer> initBundle = new HashMap<Nominals, Integer>();
+        for (Nominals nominal : nominals) {
+            initBundle.put(nominal, count);
+        }
+        return initBundle;
+    }
+
+    private int getBalanceBundle(Map<Nominals, Integer> initBundle){
+        int sum = 0;
+        Set<Nominals> keys = initBundle.keySet();
+        for (Nominals nominal : keys) {
+            sum = sum + nominal.getValue() * initBundle.get(nominal);
+        }
+        return sum;
     }
 }

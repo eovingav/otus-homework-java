@@ -5,83 +5,70 @@ import java.util.*;
 public class ATM {
 
     private Nominals[] usedNominals;
-    private Map<Nominals, Integer> storageCells = new HashMap<Nominals, Integer>();
+    private MoneyStorage storageCells;
     private int balance = 0;
 
     public ATM(Nominals[] nominals){
         usedNominals = nominals;
-        initStorageCells();
-    }
-
-    private void initStorageCells() {
-        for (Nominals nominal : usedNominals) {
-            storageCells.put(nominal, 0);
-        }
+        storageCells = new MoneyStorage(nominals);
     }
 
     public ATM(Nominals[] nominals, Map<Nominals, Integer> initBundle){
         usedNominals = nominals;
-        initStorageCells();
-        for (Nominals nominal : storageCells.keySet()) {
-            if (! Objects.isNull(initBundle.get(nominal))){
-                storageCells.put(nominal, initBundle.get(nominal));
-            }
+        storageCells = new MoneyStorage(nominals);
+        for (Nominals nominal : nominals) {
+            storageCells.addBanknote(nominal, initBundle.get(nominal));
         }
-        balance = getSumStorage(storageCells);
-    }
-
-    public int getSumStorage(Map<Nominals, Integer> storage) {
-        int sumStorage = 0;
-        Set<Nominals> keys = storage.keySet();
-        for (Nominals nominal : keys) {
-            sumStorage = sumStorage + nominal.getValue() * storage.get(nominal);
-        }
-        return sumStorage;
+        balance = storageCells.getSum();
     }
 
     public void addToStorage(Map<Nominals, Integer> banknotes){
 
         Set<Nominals> keySet = banknotes.keySet();
         for (Nominals nominal : keySet) {
-            Integer currentCountNominal = storageCells.get(nominal);
-            storageCells.put(nominal, currentCountNominal + banknotes.get(nominal));
+            storageCells.addBanknote(nominal, banknotes.get(nominal));
         }
 
-        balance = getSumStorage(storageCells);
+        balance = storageCells.getSum();
     }
 
-    int getBalance(){
+    public int getBalance(){
         return balance;
     }
 
-    public Map<Nominals, Integer> withdrawFunds(int sum){
+    public MoneyStorage withdrawFunds(int sum){
 
-        WithdrawResult withdrawResult = checkPossibleWithrdaw(sum);
+        MoneyStorage withdrawResult = checkPossibleWithrdaw(sum);
 
-        if (!withdrawResult.getSuccess()){
+        if (withdrawResult.getSum() != sum){
             throw new RuntimeException("невозможно выдать сумму");
         }
-        Map<Nominals, Integer> banknotes = withdrawResult.getWithdrawBanknotes();
+        Map<Nominals, Integer> banknotes = withdrawResult.getMoneyStorage();
+        Map<Nominals, Integer> originStorage = storageCells.getMoneyStorage();
         Set<Nominals> keySet = banknotes.keySet();
         for (Nominals nominal : keySet) {
-            int currentCount = storageCells.get(nominal);
+            int currentCount = originStorage.get(nominal);
             int withdrawCount = banknotes.get(nominal);
-            currentCount = currentCount - withdrawCount;
-            storageCells.put(nominal, currentCount);
+            storageCells.addBanknote(nominal, -withdrawCount);
         }
-        balance = getSumStorage(storageCells);
-        return banknotes;
+        balance = storageCells.getSum();
+        return withdrawResult;
     }
 
-    private WithdrawResult checkPossibleWithrdaw(int sum) {
+    public MoneyStorage getStorage(){
+        return storageCells;
+    }
 
+    private MoneyStorage checkPossibleWithrdaw(int sum) {
+
+        Map<Nominals, Integer> originalStorage = storageCells.getMoneyStorage();
         Map<Nominals, Integer> copyStorage = new HashMap<Nominals, Integer>();
         for (Nominals nominal:usedNominals){
-            copyStorage.put(nominal, storageCells.get(nominal));
+            copyStorage.put(nominal, originalStorage.get(nominal));
         }
 
         int[] f = findPossibleBanknotes(sum);
-        WithdrawResult withdrawResult = withdrawFromStorage(sum, f, copyStorage);
+        MoneyStorage withdrawResult = withdrawFromStorage(sum, f, copyStorage);
 
         return withdrawResult;
     }
@@ -113,27 +100,14 @@ public class ATM {
         return nomValuesArray;
     }
 
-
-    void printStorage(Map<Nominals, Integer> storage){
-        Set<Nominals> keys = storage.keySet();
-        for (Nominals nominal : keys) {
-            System.out.println("nominal " + nominal.getValue() + " count " + storage.get(nominal));
-        }
-        System.out.println("balance: " + balance);
-    }
-
-    Map<Nominals, Integer> getStorage(){
-        return storageCells;
-    }
-
-    private WithdrawResult withdrawFromStorage(int sum, int[] f, Map<Nominals, Integer> copyStorage) {
+    private MoneyStorage withdrawFromStorage(int sum, int[] f, Map<Nominals, Integer> copyStorage) {
 
         int[] nomValuesArray = getNominalsValueArray();
         int k = usedNominals.length;
         int sumWithdraw = sum;
         int count = 0;
 
-        WithdrawResult withdrawResult = new WithdrawResult();
+        MoneyStorage withdrawResult = new MoneyStorage();
 
         while (sumWithdraw > 0 && count <= sum) {
             count++;
@@ -150,40 +124,7 @@ public class ATM {
             }
         }
 
-        withdrawResult.success(sum);
         return withdrawResult;
     }
 
-    private class WithdrawResult{
-
-        private boolean success;
-        private Map<Nominals, Integer> withdrawBanknotes;
-
-        WithdrawResult(){
-            withdrawBanknotes = new HashMap<Nominals, Integer>();
-        }
-
-        private void addBanknote(Nominals nominal, int count){
-            Integer currentCount = withdrawBanknotes.get(nominal);
-            if (Objects.isNull(currentCount)){
-                currentCount = count;
-            }else {
-                currentCount = currentCount + count;
-            }
-            withdrawBanknotes.put(nominal, currentCount);
-        }
-
-        private Map<Nominals, Integer> getWithdrawBanknotes(){
-            return withdrawBanknotes;
-        }
-
-        private void success(int sum){
-            int currentSum = ATM.this.getSumStorage(withdrawBanknotes);
-            success = currentSum == sum;
-        }
-
-        private boolean getSuccess(){
-            return success;
-        }
-    }
 }

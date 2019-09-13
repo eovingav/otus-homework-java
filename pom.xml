@@ -15,9 +15,10 @@
     </modules>
 
     <properties>
+
         <maven.compiler.source>1.12</maven.compiler.source>
         <maven.compiler.target>1.12</maven.compiler.target>
-
+        <com.google.guava.version>28.0-jre</com.google.guava.version>
     </properties>
 
     <dependencyManagement>

@@ -12,6 +12,10 @@ public class TestRunner {
 
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException {
 
+        if (args.length == 0){
+            throw new RuntimeException("Test class name argument is not specified");
+        }
+
         ArrayList<Method> testMethods = new ArrayList<Method>();
         ArrayList<Method> beforeMethods = new ArrayList<Method>();
         ArrayList<Method> afterMethods = new ArrayList<Method>();

@@ -71,6 +71,7 @@ public class DbExecutor<T> {
     long id = getId(objectData);
     Optional<T> result = null;
     try {
+      sessionManager.beginSession();
        result = selectRecord(getConnection(), getSqlGetObjectByID(objectData.getClass()), id,resultSet -> {
         try{
           if (resultSet.next()) {
@@ -83,6 +84,7 @@ public class DbExecutor<T> {
         }
         return null;
       });
+      sessionManager.close();
     } catch (SQLException e) {
       logger.error(e.getMessage(), e);
     }
@@ -93,16 +95,17 @@ public class DbExecutor<T> {
       update(objectData);
     }
   }
-  public <T> T load(long id, Class<T> clazz) {
+  public T load(long id, Class<T> clazz) {
 
     if (!isValidClass(clazz)) {
       throw new DbExecutorException(new RuntimeException("ID field in class " + clazz + " doesn't exist!"));
     }
 
-    Object object = null;
+    T object = null;
     try {
+      sessionManager.beginSession();
       String sqlGetObjectByID = getSqlGetObjectByID(clazz);
-      return (T) selectRecord(getConnection(), sqlGetObjectByID, id, resultSet -> {
+      object =  selectRecord(getConnection(), sqlGetObjectByID, id, resultSet -> {
         try {
           if (resultSet.next()) {
             return newObjectFromRS(resultSet, clazz);
@@ -112,10 +115,11 @@ public class DbExecutor<T> {
         }
         return null;
       }).get();
+      sessionManager.close();
     } catch (Exception e) {
       logger.error("record in " + clazz.getSimpleName() + " with id = " + id + " doesn't exist");
     }
-    return null;
+    return object;
   }
 
   public long insertRecord(Connection connection, String sql, List<SqlParam> params, Boolean update) throws SQLException {
@@ -162,7 +166,7 @@ public class DbExecutor<T> {
     return sessionManager.getCurrentSession().getConnection();
   }
 
-  private Boolean isValidClass(Class<?> clazz){
+  private boolean isValidClass(Class<?> clazz){
 
     Field[] fields = clazz.getDeclaredFields();
     Boolean idFieldExists = false;

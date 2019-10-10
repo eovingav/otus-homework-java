@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.otus.hw10Hibernate.api.Identifiable;
-import ru.otus.hw10Hibernate.api.sessionmanager.SessionManager;
 
 import java.util.Optional;
 

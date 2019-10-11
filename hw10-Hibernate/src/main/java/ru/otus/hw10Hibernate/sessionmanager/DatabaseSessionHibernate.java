@@ -1,4 +1,4 @@
-package ru.otus.hw10Hibernate.hibernate.sessionmanager;
+package ru.otus.hw10Hibernate.sessionmanager;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;

@@ -1,9 +1,11 @@
-package ru.otus.hw10Hibernate.hibernate.sessionmanager;
+package ru.otus.hw10Hibernate.hibernate;
 
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.otus.hw10Hibernate.api.Identifiable;
+import ru.otus.hw10Hibernate.sessionmanager.DatabaseSessionHibernate;
+import ru.otus.hw10Hibernate.sessionmanager.SessionManagerHibernate;
 
 import java.util.Optional;
 

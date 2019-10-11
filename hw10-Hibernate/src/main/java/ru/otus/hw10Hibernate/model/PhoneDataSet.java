@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class PhoneDataSet implements Identifiable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private long id;
 

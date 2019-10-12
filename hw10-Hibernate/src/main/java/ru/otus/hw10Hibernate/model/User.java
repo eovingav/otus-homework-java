@@ -22,21 +22,19 @@ public class User implements Identifiable {
 
     @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
-    private AddressDataSet adress;
+    private AddressDataSet address;
 
-    @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "phone_id")
+    @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<PhoneDataSet> phones;
 
     public User(){
 
     }
-    public User(long id, String name, int age, AddressDataSet address, List<PhoneDataSet> phones){
+    public User(long id, String name, int age, AddressDataSet address){
         this.id = id;
         this.name = name;
         this.age = age;
-        this.adress = address;
-        this.phones = phones;
+        this.address= address;
     }
 
     @Override
@@ -64,6 +62,10 @@ public class User implements Identifiable {
         this.age = age;
     }
 
+    public void setPhones(List<PhoneDataSet> phones) {
+        this.phones = phones;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -71,7 +73,7 @@ public class User implements Identifiable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", address=" + adress.toString()  +
+                ", address=" + address.toString()  +
                 ", phones=");
         int phonesCount = phones.size();
         int i = 0;

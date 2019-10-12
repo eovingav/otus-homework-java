@@ -26,18 +26,20 @@ public class Main {
         HibernateExecutor hibernateExecutor = new HibernateExecutor(sessionManager);
 
         AddressDataSet address = new AddressDataSet(0, "Ленина");
+        User user = new User(0, "ИвановИИ", 25, address);
         List<PhoneDataSet> phones = new ArrayList<>();
-        phones.add(new PhoneDataSet(0, "+74012359925"));
-        phones.add(new PhoneDataSet(0, "+79216123456"));
-        User user = new User(0, "ИвановИИ", 25, address, phones);
+        phones.add(new PhoneDataSet(0, "+74012359925", user));
+        phones.add(new PhoneDataSet(0, "+79216123456", user));
+        user.setPhones(phones);
         long userID = hibernateExecutor.saveObject(user);
         Optional<Identifiable> mayBeCreatedUser1 = hibernateExecutor.getObject(userID, User.class);
 
         AddressDataSet address2 = new AddressDataSet(0,"Кирова");
+        User user2 = new User(0, "ПетровАН", 32, address2);
         List<PhoneDataSet> phones2 = new ArrayList<>();
-        phones2.add(new PhoneDataSet(0, "+74012111222"));
-        phones2.add(new PhoneDataSet(0, "+79219874563"));
-        User user2 = new User(0, "ПетровАН", 32, address2, phones2);
+        phones2.add(new PhoneDataSet(0, "+74012111222", user2));
+        phones2.add(new PhoneDataSet(0, "+79219874563", user2));
+        user2.setPhones(phones2);
         userID = hibernateExecutor.saveObject(user2);
         Optional<Identifiable> mayBeCreatedUser2 = hibernateExecutor.getObject(userID, User.class);
 

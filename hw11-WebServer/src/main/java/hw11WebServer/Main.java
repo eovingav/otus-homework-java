@@ -7,7 +7,6 @@ import hw11WebServer.auth.AuthorizationFilter;
 import hw11WebServer.auth.LoginFilter;
 import hw11WebServer.hibernate.HibernateExecutor;
 import hw11WebServer.hibernate.HibernateUtils;
-import hw11WebServer.login.LoginServlet;
 import hw11WebServer.auth.UserLoginService;
 import hw11WebServer.api.model.AddressDataSet;
 import hw11WebServer.api.model.PhoneDataSet;
@@ -29,6 +28,12 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/*
+Стартовая страница - index.html
+Имя пользователя - ИвановИИ
+Пароль - 123987456
+ */
 
 public class Main {
 

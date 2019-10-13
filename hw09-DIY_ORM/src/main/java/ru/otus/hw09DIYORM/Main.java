@@ -11,7 +11,6 @@ import ru.otus.hw09DIYORM.model.User;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 ;

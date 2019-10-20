@@ -14,6 +14,7 @@
         <module>hw03-TestFramework</module>
 		<module>hw09-DIY_ORM</module>
         <module>hw10-Hibernate</module>
+		<module>hw11-WebServer</module>
     </modules>
 
     <properties>

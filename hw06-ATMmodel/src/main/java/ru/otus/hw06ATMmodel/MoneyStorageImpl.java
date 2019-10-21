@@ -1,18 +1,21 @@
 package ru.otus.hw06ATMmodel;
 
+import ru.otus.hw06ATMmodel.api.MoneyStorage;
+import ru.otus.hw06ATMmodel.api.Nominals;
+
 import java.util.*;
 
-class MoneyStorage{
+class MoneyStorageImpl implements MoneyStorage {
 
     private Map<Nominals, Integer> storage;
     private int sum;
 
-    MoneyStorage(){
+    MoneyStorageImpl(){
         storage = new HashMap<Nominals, Integer>();
         sum = 0;
     }
 
-    MoneyStorage(Nominals[] nominals){
+    MoneyStorageImpl(Nominals[] nominals){
         storage = new HashMap<Nominals, Integer>();
         for (Nominals nominal : nominals){
             storage.put(nominal, 0);
@@ -35,8 +38,18 @@ class MoneyStorage{
         updateSum();
     }
 
+    public Integer getBanknotesCountByNominal(Nominals nominal){
+        return storage.get(nominal);
+    }
+
     public Map<Nominals, Integer> getMoneyStorage(){
-        return storage;
+
+        Map<Nominals, Integer> copyStorage = new HashMap<>();
+        Set<Nominals> nominals = storage.keySet();
+        for (Nominals nominal:nominals) {
+            copyStorage.put(nominal, storage.get(nominal));
+        }
+        return copyStorage;
     }
 
     public int getSum() {

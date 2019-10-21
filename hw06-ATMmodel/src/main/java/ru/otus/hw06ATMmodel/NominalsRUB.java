@@ -1,6 +1,8 @@
 package ru.otus.hw06ATMmodel;
 
-public enum NominalsRUB implements Nominals{
+import ru.otus.hw06ATMmodel.api.Nominals;
+
+public enum NominalsRUB implements Nominals {
         _100(100),
         _200(200),
         _500(500),

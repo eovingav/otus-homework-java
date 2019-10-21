@@ -1,21 +1,25 @@
 package ru.otus.hw06ATMmodel;
 
+import ru.otus.hw06ATMmodel.api.ATM;
+import ru.otus.hw06ATMmodel.api.MoneyStorage;
+import ru.otus.hw06ATMmodel.api.Nominals;
+
 import java.util.*;
 
-public class ATM {
+public class ATMImpl implements ATM {
 
     private Nominals[] usedNominals;
-    private MoneyStorage storageCells;
+    private MoneyStorageImpl storageCells;
     private int balance = 0;
 
-    public ATM(Nominals[] nominals){
+    public ATMImpl(Nominals[] nominals){
         usedNominals = nominals;
-        storageCells = new MoneyStorage(nominals);
+        storageCells = new MoneyStorageImpl(nominals);
     }
 
-    public ATM(Nominals[] nominals, Map<Nominals, Integer> initBundle){
+    public ATMImpl(Nominals[] nominals, Map<Nominals, Integer> initBundle){
         usedNominals = nominals;
-        storageCells = new MoneyStorage(nominals);
+        storageCells = new MoneyStorageImpl(nominals);
         for (Nominals nominal : nominals) {
             if (initBundle.containsKey(nominal)) {
                 storageCells.addBanknote(nominal, initBundle.get(nominal));
@@ -36,6 +40,14 @@ public class ATM {
 
     public int getBalance(){
         return balance;
+    }
+
+    public Integer getBanknotesCountByNominal(Nominals nominal){
+        return storageCells.getBanknotesCountByNominal(nominal);
+    }
+
+    public void printStorage(){
+        storageCells.printStorage();
     }
 
     public MoneyStorage withdrawFunds(int sum){
@@ -65,17 +77,9 @@ public class ATM {
         return withdrawResult;
     }
 
-    public MoneyStorage getStorage(){
-        return storageCells;
-    }
-
     private MoneyStorage checkPossibleWithrdaw(int sum) {
 
-        Map<Nominals, Integer> originalStorage = storageCells.getMoneyStorage();
-        Map<Nominals, Integer> copyStorage = new HashMap<Nominals, Integer>();
-        for (Nominals nominal:usedNominals){
-            copyStorage.put(nominal, originalStorage.get(nominal));
-        }
+        Map<Nominals, Integer> copyStorage = storageCells.getMoneyStorage();
 
         int[] f = findPossibleBanknotes(sum);
         MoneyStorage withdrawResult = withdrawFromStorage(sum, f, copyStorage);
@@ -117,7 +121,7 @@ public class ATM {
         int sumWithdraw = sum;
         int count = 0;
 
-        MoneyStorage withdrawResult = new MoneyStorage();
+        MoneyStorage withdrawResult = new MoneyStorageImpl();
 
         while (sumWithdraw > 0 && count <= sum) {
             count++;

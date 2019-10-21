@@ -1,5 +1,7 @@
 package ru.otus.hw06ATMmodel;
 
+import ru.otus.hw06ATMmodel.api.Nominals;
+
 public enum NominalsTestWithdraw2 implements Nominals {
     _1(1),
     _7(7),

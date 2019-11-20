@@ -12,9 +12,10 @@
         <module>hw01-maven</module>
         <module>hw02-DIYArraiList</module>
         <module>hw03-TestFramework</module>
-		<module>hw09-DIY_ORM</module>
+        <module>hw06-ATMmodel</module>
+        <module>hw09-DIY_ORM</module>
         <module>hw10-Hibernate</module>
-		<module>hw11-WebServer</module>
+        <module>hw11-WebServer</module>
         <module>hw13-DI</module>
     </modules>
 

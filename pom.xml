@@ -15,6 +15,7 @@
 		<module>hw09-DIY_ORM</module>
         <module>hw10-Hibernate</module>
 		<module>hw11-WebServer</module>
+        <module>hw13-DI</module>
     </modules>
 
     <properties>

@@ -9,7 +9,7 @@ import java.util.*;
 public class ATMImpl implements ATM {
 
     private Nominals[] usedNominals;
-    private MoneyStorageImpl storageCells;
+    private MoneyStorage storageCells;
     private int balance = 0;
 
     public ATMImpl(Nominals[] nominals){

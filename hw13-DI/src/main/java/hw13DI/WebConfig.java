@@ -1,14 +1,6 @@
 package hw13DI;
 
-import hibernate.HibernateUtils;
-import hw13DI.api.model.AddressDataSet;
-import hw13DI.api.model.PhoneDataSet;
-import hw13DI.api.model.Role;
-import hw13DI.api.model.User;
-import hw13DI.hibernate.HibernateExecutor;
-import hw13DI.sessionmanager.SessionManagerHibernate;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.SessionFactory;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -56,23 +48,6 @@ public class WebConfig implements WebMvcConfigurer {
         viewResolver.setOrder(1);
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
-    }
-
-
-    @Bean
-    public SessionFactory sessionFactory(){
-        return HibernateUtils.buildSessionFactory("hibernate.cfg.xml",
-                AddressDataSet.class, PhoneDataSet.class, Role.class, User.class);
-    }
-
-    @Bean
-    public SessionManagerHibernate sessionManager(){
-        return new SessionManagerHibernate(sessionFactory());
-    }
-
-    @Bean
-    public HibernateExecutor hibernateExecutor() {
-        return new HibernateExecutor(sessionManager());
     }
 
     @Override

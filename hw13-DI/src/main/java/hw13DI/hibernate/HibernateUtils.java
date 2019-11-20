@@ -1,4 +1,4 @@
-package hibernate;
+package hw13DI.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;

@@ -8,13 +8,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class HibernateExecutor{
     private static Logger logger = LoggerFactory.getLogger(HibernateExecutor.class);
+
     @Autowired
     private final SessionManagerHibernate sessionManager;
 
@@ -60,9 +63,9 @@ public class HibernateExecutor{
 
     }
 
-    public List<Identifiable> getObjectList(Class<? extends Identifiable> clazz){
+    public <T extends Identifiable> List<T> getObjectList(Class<T> clazz){
 
-        List<Identifiable> objects = new ArrayList<>();
+        List<T> objects = new ArrayList<>();
 
         sessionManager.beginSession();
         try {

@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 import hw13DI.api.model.User;
 
-import javax.annotation.Resource;
-
 
 @Controller
-@RequiredArgsConstructor
 public class UsersController {
 
     @Autowired
-    UsersRepository repository;
+    private final UsersRepository repository;
+
+    public UsersController(UsersRepository repository) {
+        this.repository = repository;
+    }
 
     @GetMapping("/")
     public String userLogin(@NotNull Model model) {

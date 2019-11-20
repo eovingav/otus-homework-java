@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+</head>
+<body>
+<div class="container" style="width 80%">
+<h1>Пользователи</h1>
+    <form action="users" method="POST" name="addUser">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="name">Имя</label>
+                <input type="text" class="form-control" id="name" placeholder="Имя пользователя" name="name">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="password">Пароль</label>
+                <input type="password" class="form-control" id="password" placeholder="Пароль" name="password">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="age">Возраст</label>
+                <input type="text" class="form-control" id="age" placeholder="Возраст" name="age">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="address">Адрес</label>
+                <input type="text" class="form-control" id="address" placeholder="Адрес" name="address">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="phones">Телефоны</label>
+                <input type="text" class="form-control" id="phones" placeholder="Телефоны" name="phones">
+            </div>
+
+        </div>
+        <input type="hidden" id="_method" value="put" name="_method" />
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+    <table class="table" id="tableUsers"/>
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Возраст</th>
+        <th scope="col">Адрес</th>
+        <th scope="col">Телефоны</th>
+    </tr>
+    </thead>
+    <tbody>
+    <#list users as row>
+    <tr>
+        <#list row as field>
+        <td>${field}</td>
+        </#list>
+    </tr>
+    </#list>
+    </tbody>
+    </table>
+
+</div>
+</body>
+</html>

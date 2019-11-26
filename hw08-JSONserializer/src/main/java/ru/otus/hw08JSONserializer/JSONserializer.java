@@ -1,9 +1,6 @@
 package ru.otus.hw08JSONserializer;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import javax.json.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
@@ -14,22 +11,52 @@ import java.util.*;
 public class JSONserializer {
 
     public String toJSON(Object object) throws IllegalAccessException {
-        JsonObject jsonObject = getJsonObject(object);
-        return jsonObject.toString();
+
+        Class clazz = (object == null) ? null : object.getClass();
+        String json = "";
+        if (object == null){
+            json = "\"null\"";
+        }else if (isPrimitive(clazz)){
+            json = "\"" + object.toString() + "\"";
+        }else if(isDate(clazz)){
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+            json = dateFormat.format(object);
+        }else if (clazz.isArray()){
+            JsonArrayBuilder jsonArrayBuilder = arrayToJson(object);
+            JsonArray jsonArray = jsonArrayBuilder.build();
+            json = jsonArray.toString();
+        }else if (object instanceof Collection){
+            JsonArrayBuilder jsonArrayBuilder = collectionToJson(object);
+            JsonArray jsonArray = jsonArrayBuilder.build();
+            json = jsonArray.toString();
+        }
+        else {
+            JsonObject jsonObject = getJsonObject(object);
+            json = jsonObject.toString();
+        }
+        return json;
+    }
+
+    public String toJSON(String object) throws IllegalAccessException {
+        return "\"" + object + "\"";
     }
 
     private JsonObject getJsonObject(Object object) throws IllegalAccessException {
+
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
         Field[] allFields = object.getClass().getDeclaredFields();
         addFields(jsonObjectBuilder, object, allFields);
+
         return jsonObjectBuilder.build();
     }
 
     private void addFields(JsonObjectBuilder jsonObjectBuilder, Object object, Field[] fields) throws IllegalAccessException {
         for (Field field: fields) {
             Object fieldObject = field.get(object);
-            Class clazz = fieldObject.getClass();
-            if (isPrimitive(clazz)) {
+            Class clazz = (fieldObject == null) ? null : fieldObject.getClass();
+            if (fieldObject == null){
+                jsonObjectBuilder.add(field.getName(), "null");
+            }else  if (isPrimitive(clazz)) {
                 jsonObjectBuilder.add(field.getName(), fieldObject.toString());
             }else if (isDate(clazz)){
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
@@ -69,9 +96,12 @@ public class JSONserializer {
     }
 
     private void addMember(JsonArrayBuilder jsonArrayBuilder, Object elem) throws IllegalAccessException {
-        Class elemClass = elem.getClass();
-        if (isPrimitive(elemClass)) {
+        Class elemClass = (elem == null) ? null : elem.getClass();
+        if (elem == null){
+            jsonArrayBuilder.add("null");
+        }else if (isPrimitive(elemClass)) {
             jsonArrayBuilder.add(elem.toString());
+
         }else if(isDate(elemClass)){
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
             jsonArrayBuilder.add(dateFormat.format(elem));

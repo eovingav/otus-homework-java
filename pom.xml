@@ -18,6 +18,7 @@
         <module>hw10-Hibernate</module>
         <module>hw11-WebServer</module>
         <module>hw13-DI</module>
+        <module>hw14-NumberSequence</module>
     </modules>
 
     <properties>

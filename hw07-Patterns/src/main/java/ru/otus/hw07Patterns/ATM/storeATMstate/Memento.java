@@ -1,4 +1,4 @@
-package ru.otus.hw07Patterns.ATM;
+package ru.otus.hw07Patterns.ATM.storeATMstate;
 
 import java.util.Arrays;
 

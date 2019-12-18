@@ -1,17 +1,23 @@
-package ru.otus.hw07Patterns.ATM;
+package ru.otus.hw07Patterns.ATM.storeATMstate;
 
-import ru.otus.hw07Patterns.ATM.api.ATM;
 import ru.otus.hw07Patterns.ATM.api.Storable;
+import ru.otus.hw07Patterns.ATM.api.StorableCaretaker;
 
-public class Caretaker {
+public class StorableCaretakerImpl implements StorableCaretaker {
 
-  Memento memento;
+  private Storable atm;
+  private Memento memento;
+
+  public StorableCaretakerImpl(Storable atm) {
+    this.atm = atm;
+    this.memento = atm.saveState();
+  }
 
   public Memento getMemento() {
     return memento;
   }
 
-  public void setMemento(Memento memento) {
-    this.memento = memento;
+  public void restore(){
+    atm.restoreState(memento);
   }
 }

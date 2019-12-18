@@ -1,9 +1,9 @@
-package ru.otus.hw07Patterns.api;
+package ru.otus.hw07Patterns.ATM.api;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public interface MoneyStorage {
+public interface MoneyStorage{
     public void printStorage();
     public Integer getBanknotesCountByNominal(Nominals nominal);
     public void addBanknote(Nominals nominal, int count);

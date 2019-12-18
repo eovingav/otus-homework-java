@@ -1,11 +1,12 @@
-package ru.otus.hw06ATMmodel;
+package ru.otus.hw07Patterns.ATM;
 
-import ru.otus.hw06ATMmodel.api.MoneyStorage;
-import ru.otus.hw06ATMmodel.api.Nominals;
+import ru.otus.hw07Patterns.ATM.api.MoneyStorage;
+import ru.otus.hw07Patterns.ATM.api.Nominals;
 
+import java.io.Serializable;
 import java.util.*;
 
-class MoneyStorageImpl implements MoneyStorage {
+class MoneyStorageImpl implements MoneyStorage, Serializable {
 
     private Map<Nominals, Integer> storage;
     private int sum;

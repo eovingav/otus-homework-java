@@ -1,13 +1,17 @@
-package ru.otus.hw06ATMmodel;
+package ru.otus.hw07Patterns.ATM;
 
-import ru.otus.hw06ATMmodel.api.ATM;
-import ru.otus.hw06ATMmodel.api.MoneyStorage;
-import ru.otus.hw06ATMmodel.api.Nominals;
+import ru.otus.hw07Patterns.ATM.api.*;
+import ru.otus.hw07Patterns.ATM.storeATMstate.Memento;
+import ru.otus.hw07Patterns.ATMDepartment.api.ATMDepartmentAbsctract;
+import ru.otus.hw07Patterns.ATMDepartment.api.IerarchicalComponent;
+import ru.otus.hw07Patterns.ATMDepartment.api.Visitor;
 
+import java.io.*;
 import java.util.*;
 
-public class ATMImpl implements ATM {
+public class ATMImpl extends ATMabstract {
 
+    private String name;
     private Nominals[] usedNominals;
     private MoneyStorage storageCells;
     private int balance = 0;
@@ -36,6 +40,10 @@ public class ATMImpl implements ATM {
         }
 
         balance = storageCells.getSum();
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getBalance(){
@@ -139,6 +147,49 @@ public class ATMImpl implements ATM {
         }
 
         return withdrawResult;
+    }
+
+    public Memento saveState() {
+       byte[] state;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(baos);
+            out.writeInt(this.balance);
+            out.writeObject(this.storageCells);
+            state = baos.toByteArray();
+            out.close();
+        }catch (Exception e){
+            state = new byte[0];
+        }
+
+        return new Memento(state);
+    }
+
+    public void restoreState(Memento memento) {
+        byte[] state = memento.getState();
+        ATMImpl object;
+        try {
+            ByteArrayInputStream bais = new ByteArrayInputStream(state);
+            ObjectInputStream in = null;
+            in = new ObjectInputStream(bais);
+            this.balance = (int) in.readInt();
+            this.storageCells = (MoneyStorageImpl) in.readObject();
+            in.close();
+        } catch (Exception e) {
+            new Exception("Error restoring state");
+        }
+    }
+
+
+    public long accept(Visitor visitor) throws Exception {
+        return visitor.visitATM(this);
+    }
+
+    @Override
+    public String toString() {
+        return "ATM{" +
+                "name='" + name + '\'' +
+                '}';
     }
 
 }

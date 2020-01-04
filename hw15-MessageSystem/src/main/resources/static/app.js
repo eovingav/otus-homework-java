@@ -27,18 +27,23 @@ const userList = () => stompClient.send(
     {},
     );
 
-const userAdd = () => stompClient.send(
-    "/app/userAdd",
-    {},
-    JSON.stringify({
-        'name': $("#userAddName").val(),
-        'password' : $("#userAddPassword").val(),
-        'phonesString' : $("#userAddPhonesString").val(),
-        'addressString' : $("#userAddAddressString").val()
-    }));
+const userAdd = () => {
+    stompClient.send(
+        "/app/userAdd",
+        {},
+        JSON.stringify({
+            'name': $("#userAddName").val(),
+            'age' : $("#userAddAge").val(),
+            'password' : $("#userAddPassword").val(),
+            'phonesString' : $("#userAddPhonesString").val(),
+            'addressString' : $("#userAddAddressString").val()
+        }));
+    $("#userAddError").hide();
+}
 
 const logout = () => {
     $("#loginForm").show();
+    $("#userAddError").hide();
     $("#users").hide();
     $("#userLine").hide();
 }
@@ -46,6 +51,7 @@ const logout = () => {
 const showLogin = loginResult => {
     if (loginResult.success){
         $("#loginForm").hide();
+        $("#userAddError").hide();
         $("#loginText").html("Вы вошли как ");
         $("#loginText").append(loginResult.name);
         $("#users").show();
@@ -69,7 +75,16 @@ const showUsers = users => {
 }
 
 const showAddUser = newUserID => {
-    userList();
+    if (newUserID > 0){
+        $("#userAddName").val('');
+        $("#userAddPassword").val('');
+        $("#userAddAge").val('');
+        $("#userAddPhonesString").val('');
+        $("#userAddAddressString").val('');
+        userList();
+    }else {
+        $("#userAddError").show();
+    }
 }
 
 $(() => {

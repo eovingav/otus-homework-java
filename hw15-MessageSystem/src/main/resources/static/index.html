@@ -41,7 +41,7 @@
         <div class="row">
             <h1>Пользователи</h1>
         </div>
-    <form>
+    <form id="userAddForm">
         <div class="form-row">
             <div class="form-group col-md-2">
                 <label for="name">Имя</label>
@@ -65,7 +65,10 @@
             </div>
 
         </div>
-        <button id="userAdd" type="submit" class="btn btn-primary">Добавить</button>
+        <div class="form-row">
+            <button id="userAdd" type="submit" class="btn btn-primary">Добавить</button>
+            <div class="alert alert-danger" role="alert" id="userAddError">Не удалось добавить пользователя!</div>
+        </div>
     </form>
 
         <div class="row">

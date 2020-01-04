@@ -1,5 +1,6 @@
 package hw15MessageSystem.frontend;
 
+import hw15MessageSystem.db.api.model.User;
 import hw15MessageSystem.frontend.MessageTypes.LoginResult;
 import hw15MessageSystem.frontend.MessageTypes.UserCredetinals;
 import hw15MessageSystem.messagesystem.Message;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -34,7 +36,21 @@ public class FrontendServiceImpl implements FrontendService {
     msClient.sendMessage(outMsg);
   }
 
-  @Override
+    @Override
+    public void userList(Consumer<List<User>> dataConsumer) {
+        Message outMsg = msClient.produceMessage(databaseServiceClientName, null, MessageType.USER_LIST);
+        consumerMap.put(outMsg.getId(), dataConsumer);
+        msClient.sendMessage(outMsg);
+    }
+
+    @Override
+    public void userAdd(User user, Consumer<Long> dataConsumer) {
+        Message outMsg = msClient.produceMessage(databaseServiceClientName, user, MessageType.USER_ADD);
+        consumerMap.put(outMsg.getId(), dataConsumer);
+        msClient.sendMessage(outMsg);
+    }
+
+    @Override
   public <T> Optional<Consumer<T>> takeConsumer(UUID sourceMessageId, Class<T> tClass) {
     Consumer<T> consumer = (Consumer<T>) consumerMap.remove(sourceMessageId);
     if (consumer == null) {

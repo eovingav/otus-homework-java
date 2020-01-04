@@ -2,10 +2,11 @@ package hw15MessageSystem.db.api.model;
 
 import hw15MessageSystem.db.api.Identifiable;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "address")
-public class AddressDataSet implements Identifiable {
+public class AddressDataSet implements Identifiable, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

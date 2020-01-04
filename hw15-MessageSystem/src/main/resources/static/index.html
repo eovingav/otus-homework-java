@@ -30,19 +30,46 @@
     </form>
 </div>
 <div id="users" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label id="loginText"></label>
+                    <button id="logout" class="btn btn-default" type="submit">Выйти</button>
+                </div>
+            </form>
+        </div>
+    </div>
         <div class="row">
             <h1>Пользователи</h1>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label id="loginText"></label>
-                        <button id="logout" class="btn btn-default" type="submit">Выйти</button>
-                    </div>
-                </form>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="name">Имя</label>
+                <input type="text" class="form-control" id="userAddName" placeholder="Имя пользователя">
             </div>
+            <div class="form-group col-md-2">
+                <label for="userAddPassword">Пароль</label>
+                <input type="password" class="form-control" id="userAddPassword" placeholder="Пароль">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="userAddAge">Возраст</label>
+                <input type="text" class="form-control" id="userAddAge" placeholder="Возраст">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="userAddAddressString">Адрес</label>
+                <input type="text" class="form-control" id="userAddAddressString" placeholder="Адрес">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="userAddPhonesString">Телефоны</label>
+                <input type="text" class="form-control" id="userAddPhonesString" placeholder="Телефоны">
+            </div>
+
         </div>
+        <button id="userAdd" type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+
         <div class="row">
         <div class="col-md-12">
             <table id="userList" class="table table-striped">

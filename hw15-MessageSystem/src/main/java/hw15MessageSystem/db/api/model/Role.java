@@ -2,13 +2,14 @@ package hw15MessageSystem.db.api.model;
 
 import hw15MessageSystem.db.api.Identifiable;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "role")
-public class Role implements Identifiable {
+public class Role implements Identifiable, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -6,12 +6,13 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "user")
-public class User implements Identifiable {
+public class User implements Identifiable, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

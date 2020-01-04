@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello WebSocket</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/app.js"></script>
+    <meta charset="UTF-8">
+</head>
+<body onload="connect()">
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+<div id = "loginForm" class="container" style="width 80%">
+    <H1>Администрирование</H1>
+    <article>Войдите, чтобы начать администрировать пользователей</article>
+    <p>
+    <form>
+        <div class="form-group">
+            <label for="name">Логин</label>
+            <input type="text" class="form-control" id="name" placeholder="Введите имя" name="name">
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
+        </div>
+        <button id="login" type="submit" class="btn btn-primary">Войти</button>
+    </form>
+</div>
+<div id="users" class="container">
+        <div class="row">
+            <h1>Пользователи</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label id="loginText"></label>
+                        <button id="logout" class="btn btn-default" type="submit">Выйти</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12">
+            <table id="userList" class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Возраст</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Телефоны</th>
+                </tr>
+                </thead>
+                <tbody id="userLine"></tbody>
+            </table>
+        </div>
+        </div>
+</div>
+</body>
+</html>

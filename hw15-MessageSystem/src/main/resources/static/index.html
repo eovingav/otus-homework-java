@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello WebSocket</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/app.js"></script>
+    <meta charset="UTF-8">
+</head>
+<body onload="connect()">
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+<div id = "loginForm" class="container" style="width 80%">
+    <H1>Администрирование</H1>
+    <article>Войдите, чтобы начать администрировать пользователей</article>
+    <p>
+    <form>
+        <div class="form-group">
+            <label for="name">Логин</label>
+            <input type="text" class="form-control" id="name" placeholder="Введите имя" name="name">
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
+        </div>
+        <button id="login" type="submit" class="btn btn-primary">Войти</button>
+    </form>
+</div>
+<div id="users" class="container">
+        <div class="row justify-content-end">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label id="loginText"></label>
+                    <button id="logout" class="btn btn-link" type="submit">Выйти</button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <h1>Пользователи</h1>
+        </div>
+    <form id="userAddForm">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="name">Имя</label>
+                <input type="text" class="form-control" id="userAddName" placeholder="Имя пользователя">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="userAddPassword">Пароль</label>
+                <input type="password" class="form-control" id="userAddPassword" placeholder="Пароль">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="userAddAge">Возраст</label>
+                <input type="text" class="form-control" id="userAddAge" placeholder="Возраст">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="userAddAddressString">Адрес</label>
+                <input type="text" class="form-control" id="userAddAddressString" placeholder="Адрес">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="userAddPhonesString">Телефоны</label>
+                <input type="text" class="form-control" id="userAddPhonesString" placeholder="Телефоны">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <button id="userAdd" type="submit" class="btn btn-primary">Добавить</button>
+            <div class="alert alert-danger" role="alert" id="userAddError">Не удалось добавить пользователя!</div>
+        </div>
+    </form>
+
+        <div class="row">
+        <div class="col-md-12">
+            <table id="userList" class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Возраст</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Телефоны</th>
+                </tr>
+                </thead>
+                <tbody id="userLine"></tbody>
+            </table>
+        </div>
+        </div>
+</div>
+</body>
+</html>

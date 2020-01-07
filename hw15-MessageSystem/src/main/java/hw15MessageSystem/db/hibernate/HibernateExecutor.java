@@ -37,7 +37,7 @@ public class HibernateExecutor{
         try {
             long entityId = saveEntity(entity);
             sessionManager.commitSession();
-            logger.info("created " + entity.getClass().getSimpleName() + " with ID=" + entityId);
+            logger.info("created {} with ID={}", entity.getClass().getSimpleName(), entityId);
             return entityId;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -51,7 +51,7 @@ public class HibernateExecutor{
             sessionManager.beginSession();
             try {
                 Optional<Identifiable> entityOptional = findById(id, clazz);
-                logger.info("" + clazz.getSimpleName() + ": {}", entityOptional.orElse(null));
+                logger.info("{}: {}", clazz.getSimpleName(),  entityOptional.orElse(null));
                 sessionManager.close();
                 return entityOptional;
             } catch (Exception e) {

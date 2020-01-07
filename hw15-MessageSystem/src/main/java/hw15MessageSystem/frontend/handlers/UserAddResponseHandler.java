@@ -17,7 +17,6 @@ public class UserAddResponseHandler implements RequestHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(UserAddResponseHandler.class);
 
-    @Autowired
     private final FrontendService frontendService;
 
     public UserAddResponseHandler(FrontendService frontendService) {

@@ -15,7 +15,6 @@ import java.util.Optional;
 
 public class UserListRequestHandler  implements RequestHandler {
 
-    @Autowired
     private final UsersRepository usersRepository;
 
     public UserListRequestHandler(UsersRepository usersRepository) {

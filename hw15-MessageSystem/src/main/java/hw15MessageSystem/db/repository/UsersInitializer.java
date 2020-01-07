@@ -14,8 +14,7 @@ import java.util.List;
 @Service
 public class UsersInitializer {
 
-    @Autowired
-    private final HibernateExecutor hibernateExecutor;
+     private final HibernateExecutor hibernateExecutor;
 
     public UsersInitializer(HibernateExecutor hibernateExecutor) {
         this.hibernateExecutor = hibernateExecutor;

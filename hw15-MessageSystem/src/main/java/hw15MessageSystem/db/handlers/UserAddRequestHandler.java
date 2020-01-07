@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Optional;
 
 public class UserAddRequestHandler implements RequestHandler {
-    @Autowired
+
     private final UsersRepository usersRepository;
 
     public UserAddRequestHandler(UsersRepository usersRepository) {

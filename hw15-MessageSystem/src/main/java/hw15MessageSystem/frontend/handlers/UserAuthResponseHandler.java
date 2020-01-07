@@ -14,9 +14,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class UserAuthResponseHandler implements RequestHandler {
+
   private static final Logger logger = LoggerFactory.getLogger(UserAuthResponseHandler.class);
 
-  @Autowired
   private final FrontendService frontendService;
 
   public UserAuthResponseHandler(FrontendService frontendService) {

@@ -9,9 +9,10 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>hw01-maven</module>
+<!--        <module>hw01-maven</module>-->
         <module>hw02-DIYArraiList</module>
         <module>hw03-TestFramework</module>
+        <module>hw04-Logger</module>
         <module>hw06-ATMmodel</module>
         <module>hw07-Patterns</module>
         <module>hw08-JSONSerializer</module>

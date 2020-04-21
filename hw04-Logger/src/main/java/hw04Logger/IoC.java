@@ -1,34 +1,51 @@
 package hw04Logger;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
+import java.lang.reflect.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-class IoC {
+public class IoC<T> {
 
-  static TestLogging createProxyLogging() {
+  T createProxyLogging(T obj, Class<?> clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    Set<Method> annotatedMethods = getAnnotatedMethods(obj.getClass(), clazz);
+    InvocationHandler handler = new DemoInvocationHandler(obj, annotatedMethods);
+    return (T) Proxy.newProxyInstance(IoC.class.getClassLoader(),
+            new Class<?>[]{clazz}, handler);
+  }
+
+  private Set<Method> getAnnotatedMethods(Class<?> clazzObject, Class<?> clazz) {
+
     Set<Method> annotatedMethods = new HashSet<>();
-    Method[] methods = TestLogging.class.getDeclaredMethods();
+    Method[] methods = clazzObject.getDeclaredMethods();
+    Method[] interfaceMethods = clazz.getMethods();
     for(Method method: methods){
       Annotation logAnnotation = method.getAnnotation(Log.class);
       if (Objects.nonNull(logAnnotation)){
-        annotatedMethods.add(method);
+        String methodSignature = getMethodSignature(method);
+        for (Method methodInterface: interfaceMethods) {
+          if (getMethodSignature(methodInterface).equals(methodSignature))
+          {
+            annotatedMethods.add(methodInterface);
+            break;
+          }
+        }
       }
     }
-    InvocationHandler handler = new DemoInvocationHandler(new TestLoggingImpl(), annotatedMethods);
-    return (TestLogging) Proxy.newProxyInstance(IoC.class.getClassLoader(),
-        new Class<?>[]{TestLogging.class}, handler);
+    return annotatedMethods;
+  }
+  private String getMethodSignature(Method method){
+    String fullMethodSiganature = method.toString();
+    int beginMethodSignature = fullMethodSiganature.lastIndexOf(".");
+    return fullMethodSiganature.substring(beginMethodSignature);
   }
 
-  static class DemoInvocationHandler implements InvocationHandler {
-    private final TestLogging myClass;
+  class DemoInvocationHandler implements InvocationHandler {
+    private final T myClass;
     private final Set<Method> annotatedMethods;
 
-    DemoInvocationHandler(TestLogging myClass, Set<Method> annotatedMethods) {
+    DemoInvocationHandler(T myClass, Set<Method> annotatedMethods) {
       this.myClass = myClass;
       this.annotatedMethods = annotatedMethods;
     }
@@ -51,8 +68,8 @@ class IoC {
     @Override
     public String toString() {
       return "DemoInvocationHandler{" +
-                 "myClass=" + myClass +
-                 '}';
+              "myClass=" + myClass +
+              '}';
     }
   }
 

@@ -1,0 +1,91 @@
+[2020-05-11T16:45:47.556+0300][0.176s][info][gc] Using The Z Garbage Collector
+[2020-05-11T16:45:49.806+0300][2.426s][info][gc] GC(0) Garbage Collection (Warmup) 112M(11%)->56M(5%)
+[2020-05-11T16:45:50.959+0300][3.579s][info][gc] GC(1) Garbage Collection (Warmup) 206M(20%)->40M(4%)
+[2020-05-11T16:45:52.981+0300][5.600s][info][gc] GC(2) Garbage Collection (Warmup) 318M(31%)->80M(8%)
+[2020-05-11T16:45:56.720+0300][9.339s][info][gc] GC(3) Garbage Collection (Allocation Rate) 776M(76%)->224M(22%)
+[2020-05-11T16:45:58.153+0300][10.772s][info][gc] GC(4) Garbage Collection (Allocation Rate) 454M(44%)->232M(23%)
+[2020-05-11T16:45:59.687+0300][12.307s][info][gc] GC(5) Garbage Collection (Allocation Rate) 508M(50%)->222M(22%)
+[2020-05-11T16:46:01.494+0300][14.114s][info][gc] GC(6) Garbage Collection (Allocation Rate) 562M(55%)->284M(28%)
+[2020-05-11T16:46:03.747+0300][16.367s][info][gc] GC(7) Garbage Collection (Allocation Rate) 680M(66%)->320M(31%)
+[2020-05-11T16:46:05.129+0300][17.749s][info][gc] GC(8) Garbage Collection (Allocation Rate) 536M(52%)->376M(37%)
+[2020-05-11T16:46:07.060+0300][19.680s][info][gc] GC(9) Garbage Collection (Allocation Rate) 618M(60%)->382M(37%)
+[2020-05-11T16:46:09.103+0300][21.723s][info][gc] GC(10) Garbage Collection (Allocation Rate) 618M(60%)->418M(41%)
+[2020-05-11T16:46:10.715+0300][23.336s][info][gc] GC(11) Garbage Collection (Allocation Rate) 588M(57%)->442M(43%)
+[2020-05-11T16:46:12.435+0300][25.054s][info][gc] GC(12) Garbage Collection (Allocation Rate) 612M(60%)->370M(36%)
+[2020-05-11T16:46:14.106+0300][26.726s][info][gc] GC(13) Garbage Collection (Allocation Rate) 546M(53%)->560M(55%)
+[2020-05-11T16:46:15.024+0300][27.643s][info][gc] GC(14) Garbage Collection (Allocation Rate) 562M(55%)->538M(53%)
+[2020-05-11T16:46:15.963+0300][28.583s][info][gc] GC(15) Garbage Collection (Allocation Rate) 554M(54%)->520M(51%)
+[2020-05-11T16:46:17.635+0300][30.255s][info][gc] GC(16) Garbage Collection (Allocation Rate) 666M(65%)->566M(55%)
+[2020-05-11T16:46:18.743+0300][31.363s][info][gc] GC(17) Garbage Collection (Allocation Rate) 602M(59%)->564M(55%)
+[2020-05-11T16:46:20.087+0300][32.707s][info][gc] GC(18) Garbage Collection (Allocation Rate) 650M(63%)->610M(60%)
+[2020-05-11T16:46:21.104+0300][33.725s][info][gc] GC(19) Garbage Collection (Allocation Rate) 616M(60%)->604M(59%)
+[2020-05-11T16:46:22.537+0300][35.157s][info][gc] GC(20) Garbage Collection (Allocation Rate) 666M(65%)->634M(62%)
+[2020-05-11T16:46:23.681+0300][36.301s][info][gc] GC(21) Garbage Collection (Allocation Rate) 650M(63%)->618M(60%)
+[2020-05-11T16:46:24.876+0300][37.496s][info][gc] GC(22) Garbage Collection (Allocation Rate) 648M(63%)->682M(67%)
+[2020-05-11T16:46:26.043+0300][38.663s][info][gc] GC(23) Garbage Collection (Allocation Rate) 688M(67%)->698M(68%)
+[2020-05-11T16:46:27.314+0300][39.934s][info][gc] GC(24) Garbage Collection (Allocation Rate) 716M(70%)->704M(69%)
+[2020-05-11T16:46:28.418+0300][41.038s][info][gc] Allocation Stall (main) 33.159ms
+[2020-05-11T16:46:28.421+0300][41.041s][info][gc] Allocation Stall (Notification Thread) 2.633ms
+[2020-05-11T16:46:28.467+0300][41.087s][info][gc] GC(25) Garbage Collection (Allocation Rate) 704M(69%)->828M(81%)
+[2020-05-11T16:46:29.766+0300][42.386s][info][gc] Allocation Stall (main) 85.302ms
+[2020-05-11T16:46:29.811+0300][42.431s][info][gc] GC(26) Garbage Collection (Allocation Rate) 840M(82%)->750M(73%)
+[2020-05-11T16:46:31.060+0300][43.680s][info][gc] GC(27) Garbage Collection (Allocation Rate) 752M(73%)->788M(77%)
+[2020-05-11T16:46:32.353+0300][44.974s][info][gc] Allocation Stall (Notification Thread) 2.629ms
+[2020-05-11T16:46:32.409+0300][45.029s][info][gc] GC(28) Garbage Collection (Allocation Rate) 802M(78%)->816M(80%)
+[2020-05-11T16:46:33.619+0300][46.239s][info][gc] Allocation Stall (main) 142.648ms
+[2020-05-11T16:46:33.621+0300][46.241s][info][gc] Allocation Stall (Notification Thread) 1.956ms
+[2020-05-11T16:46:33.705+0300][46.324s][info][gc] GC(29) Garbage Collection (Allocation Rate) 816M(80%)->816M(80%)
+[2020-05-11T16:46:34.929+0300][47.550s][info][gc] Allocation Stall (main) 161.903ms
+[2020-05-11T16:46:34.931+0300][47.551s][info][gc] Allocation Stall (Notification Thread) 1.758ms
+[2020-05-11T16:46:34.973+0300][47.593s][info][gc] GC(30) Garbage Collection (Allocation Rate) 818M(80%)->824M(80%)
+[2020-05-11T16:46:36.228+0300][48.848s][info][gc] Allocation Stall (main) 249.881ms
+[2020-05-11T16:46:36.228+0300][48.848s][info][gc] Allocation Stall (Notification Thread) 0.715ms
+[2020-05-11T16:46:36.266+0300][48.886s][info][gc] GC(31) Garbage Collection (Allocation Rate) 830M(81%)->816M(80%)
+[2020-05-11T16:46:37.557+0300][50.178s][info][gc] Allocation Stall (main) 188.717ms
+[2020-05-11T16:46:37.605+0300][50.225s][info][gc] GC(32) Garbage Collection (Allocation Rate) 824M(80%)->836M(82%)
+[2020-05-11T16:46:38.824+0300][51.445s][info][gc] Allocation Stall (main) 392.724ms
+[2020-05-11T16:46:38.824+0300][51.445s][info][gc] Allocation Stall (Notification Thread) 0.302ms
+[2020-05-11T16:46:38.873+0300][51.493s][info][gc] GC(33) Garbage Collection (Allocation Rate) 838M(82%)->844M(82%)
+[2020-05-11T16:46:40.106+0300][52.726s][info][gc] Allocation Stall (main) 491.035ms
+[2020-05-11T16:46:40.107+0300][52.727s][info][gc] Allocation Stall (Notification Thread) 0.813ms
+[2020-05-11T16:46:40.146+0300][52.765s][info][gc] GC(34) Garbage Collection (Allocation Rate) 856M(84%)->834M(81%)
+[2020-05-11T16:46:41.371+0300][53.991s][info][gc] Allocation Stall (main) 446.888ms
+[2020-05-11T16:46:41.413+0300][54.033s][info][gc] GC(35) Garbage Collection (Allocation Rate) 858M(84%)->844M(82%)
+[2020-05-11T16:46:42.698+0300][55.318s][info][gc] Allocation Stall (main) 316.274ms
+[2020-05-11T16:46:42.700+0300][55.320s][info][gc] Allocation Stall (Notification Thread) 1.936ms
+[2020-05-11T16:46:42.729+0300][55.349s][info][gc] GC(36) Garbage Collection (Allocation Rate) 846M(83%)->860M(84%)
+[2020-05-11T16:46:43.953+0300][56.573s][info][gc] Allocation Stall (main) 643.540ms
+[2020-05-11T16:46:43.954+0300][56.573s][info][gc] Allocation Stall (Notification Thread) 0.686ms
+[2020-05-11T16:46:43.985+0300][56.605s][info][gc] GC(37) Garbage Collection (Allocation Rate) 888M(87%)->830M(81%)
+[2020-05-11T16:46:45.182+0300][57.802s][info][gc] Allocation Stall (main) 470.980ms
+[2020-05-11T16:46:45.182+0300][57.802s][info][gc] Allocation Stall (Notification Thread) 0.156ms
+[2020-05-11T16:46:45.205+0300][57.825s][info][gc] GC(38) Garbage Collection (Allocation Rate) 840M(82%)->882M(86%)
+[2020-05-11T16:46:46.300+0300][58.920s][info][gc] Allocation Stall (main) 614.696ms
+[2020-05-11T16:46:46.300+0300][58.920s][info][gc] Allocation Stall (Notification Thread) 0.412ms
+[2020-05-11T16:46:46.330+0300][58.950s][info][gc] GC(39) Garbage Collection (Allocation Rate) 886M(87%)->852M(83%)
+[2020-05-11T16:46:47.726+0300][60.346s][info][gc] Allocation Stall (main) 271.568ms
+[2020-05-11T16:46:47.735+0300][60.355s][info][gc] Allocation Stall (main) 6.603ms
+[2020-05-11T16:46:47.772+0300][60.392s][info][gc] GC(40) Garbage Collection (Allocation Rate) 882M(86%)->858M(84%)
+[2020-05-11T16:46:49.023+0300][61.643s][info][gc] Allocation Stall (main) 622.143ms
+[2020-05-11T16:46:49.023+0300][61.643s][info][gc] Allocation Stall (Notification Thread) 0.657ms
+[2020-05-11T16:46:49.045+0300][61.664s][info][gc] GC(41) Garbage Collection (Allocation Rate) 868M(85%)->882M(86%)
+[2020-05-11T16:46:50.204+0300][62.824s][info][gc] Allocation Stall (main) 694.237ms
+[2020-05-11T16:46:50.204+0300][62.824s][info][gc] Allocation Stall (Notification Thread) 0.501ms
+[2020-05-11T16:46:50.233+0300][62.853s][info][gc] GC(42) Garbage Collection (Allocation Rate) 908M(89%)->856M(84%)
+[2020-05-11T16:46:51.489+0300][64.110s][info][gc] Allocation Stall (main) 635.348ms
+[2020-05-11T16:46:51.489+0300][64.110s][info][gc] Allocation Stall (Notification Thread) 0.255ms
+[2020-05-11T16:46:51.512+0300][64.132s][info][gc] GC(43) Garbage Collection (Allocation Rate) 884M(86%)->884M(86%)
+[2020-05-11T16:46:52.638+0300][65.258s][info][gc] Allocation Stall (main) 623.977ms
+[2020-05-11T16:46:52.638+0300][65.259s][info][gc] Allocation Stall (Notification Thread) 0.892ms
+[2020-05-11T16:46:52.663+0300][65.283s][info][gc] GC(44) Garbage Collection (Allocation Rate) 884M(86%)->892M(87%)
+[2020-05-11T16:46:53.766+0300][66.386s][info][gc] Allocation Stall (main) 698.557ms
+[2020-05-11T16:46:53.766+0300][66.386s][info][gc] Allocation Stall (Notification Thread) 0.403ms
+[2020-05-11T16:46:53.794+0300][66.414s][info][gc] GC(45) Garbage Collection (Allocation Rate) 914M(89%)->874M(85%)
+[2020-05-11T16:46:54.957+0300][67.578s][info][gc] Allocation Stall (main) 629.798ms
+[2020-05-11T16:46:54.958+0300][67.578s][info][gc] Allocation Stall (Notification Thread) 0.596ms
+[2020-05-11T16:46:54.970+0300][67.590s][info][gc] GC(46) Garbage Collection (Allocation Rate) 882M(86%)->904M(88%)
+[2020-05-11T16:46:54.971+0300][67.590s][debug][gc] GC(47) Boosting workers
+[2020-05-11T16:46:55.474+0300][68.094s][info ][gc] GC(47) Garbage Collection (Allocation Stall) 904M(88%)->810M(79%)
+[2020-05-11T16:46:55.474+0300][68.094s][info ][gc] Allocation Stall (main) 515.547ms
+[2020-05-11T16:46:55.474+0300][68.094s][info ][gc] Out Of Memory (main)
+[2020-05-11T16:46:55.553+0300][68.173s][info ][gc] GC(48) Garbage Collection (Allocation Rate) 812M(79%)->14M(1%)

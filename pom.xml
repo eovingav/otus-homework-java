@@ -13,6 +13,7 @@
         <module>hw02-DIYArraiList</module>
         <module>hw03-TestFramework</module>
         <module>hw04-Logger</module>
+        <module>hw05-GarbageCollectors</module>
         <module>hw06-ATMmodel</module>
         <module>hw07-Patterns</module>
         <module>hw08-JSONSerializer</module>
@@ -21,7 +22,8 @@
         <module>hw11-WebServer</module>
         <module>hw13-DI</module>
         <module>hw14-NumberSequence</module>
-        <module>hw15-MessageSystem</module>     
+        <module>hw15-MessageSystem</module>
+        <module>hw05-GarbageCollectors</module>
     </modules>
 
     <properties>

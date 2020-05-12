@@ -21,7 +21,8 @@
         <module>hw11-WebServer</module>
         <module>hw13-DI</module>
         <module>hw14-NumberSequence</module>
-        <module>hw15-MessageSystem</module>     
+        <module>hw15-MessageSystem</module>
+        <module>hw12-CacheEngine</module>
     </modules>
 
     <properties>
